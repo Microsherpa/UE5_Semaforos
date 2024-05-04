@@ -41,6 +41,9 @@
 *.VC.db
 *.VC.opendb
 
+#Trash
+Intermediate\Build\Win64\x64\UE5_SemaforosEditor\Development\Engine\*
+
 # Precompiled Assets
 SourceArt/**/*.png
 SourceArt/**/*.tga
