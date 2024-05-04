@@ -1,1 +1,0 @@
-#include "D:/GITHUB REPOS/UE5_Semaforo/UE5_Semaforos/UE5_Semaforos/Source/UE5_Semaforos/MyTriggerBox.h"
