@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"d:\\GitHub_Repositories\\UE5_Semaforos\\UE5_Semaforos\\Source\\UE5_Semaforos\\UE5_Semaforos.Build.cs",
+		"d:\\GitHub_Repositories\\UE5_Semaforos\\UE5_Semaforos\\Source\\UE5_Semaforos.Target.cs",
+		"d:\\GitHub_Repositories\\UE5_Semaforos\\UE5_Semaforos\\Source\\UE5_SemaforosEditor.Target.cs"
+	],
+	"EngineVersion": "5.3.2"
+}

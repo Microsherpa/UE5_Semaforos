@@ -35,8 +35,10 @@ void ATrafficLight::BeginPlay()
 void ATrafficLight::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (CarArray.Num() == 0) SwitchColor(FColor::Green);
-	else SwitchColor(FColor::Red);
+	if (CarArray.Num() == 0) 
+		SwitchColor(FColor::Green);
+	else 
+		SwitchColor(FColor::Red);
 }
 
 void ATrafficLight::NotifyActorBeginOverlap(AActor* OtherActor)
@@ -47,7 +49,8 @@ void ATrafficLight::NotifyActorBeginOverlap(AActor* OtherActor)
 
 		ManageCars(Car, true);
 		
-		if (CarArray.Num() > 1) Car->currentSpeed = 0;
+		if (CarArray.Num() > 1) 
+			Car->currentSpeed = 0;
 	}
 
 }
@@ -56,7 +59,8 @@ void ATrafficLight::NotifyActorEndOverlap(AActor* OtherActor)
 {
 	Car = Cast<ACar>(OtherActor);
 
-	if (Car) ManageCars(Car, false);
+	if (Car) 
+		ManageCars(Car, false);
 }
 
 void ATrafficLight::SwitchColor(FColor color) {
