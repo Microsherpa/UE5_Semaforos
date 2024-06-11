@@ -18,17 +18,26 @@ ATrafficLight::ATrafficLight()
 
 	light = CreateDefaultSubobject<UPointLightComponent>(TEXT("Light"));
 	light->SetupAttachment(sphereCollider);
-	light->LightColor = FColor::Green;
-	light->IntensityUnits = ELightUnits::Lumens;
-	light->Intensity = 4000;
+	light->SetLightColor(FLinearColor::Green);
 	light->SourceRadius = 350;
 	light->AttenuationRadius = 350;
+	light->IntensityUnits = ELightUnits::Lumens;
+	light->Intensity = 1000;
+	light->CastShadows = false;
+	light->SetVisibility(true);
+
+	
+
+
+
 }
 
 // Called when the game starts or when spawned
 void ATrafficLight::BeginPlay()
 {
 	Super::BeginPlay();
+
+	light->AddLocalOffset(FVector(0, 0, 50));
 }
 
 // Called every frame
@@ -67,13 +76,18 @@ void ATrafficLight::SwitchColor(FColor color) {
 	light->SetLightColor(color);
 }
 
-void ATrafficLight::ManageCars(ACar* newCar, bool add) {
+void ATrafficLight::ManageCars(ACar* newCar, bool add) 
+{
 	if (add) CarArray.Emplace(newCar);
-	else {
+	else 
+	{
 		CarArray.Remove(newCar);
-		if (CarArray.Num() != 0) {
-			if(waitTime > 0) GetWorld()->GetTimerManager().SetTimer(TimerHandle_DelayedSpeedUpdate, this, &ATrafficLight::DelayedSpeedUpdate, waitTime, false);
-			else CarArray[0]->currentSpeed = CarArray[0]->speed;
+		if (CarArray.Num() != 0) 
+		{
+			if(waitTime > 0) 
+				GetWorld()->GetTimerManager().SetTimer(TimerHandle_DelayedSpeedUpdate, this, &ATrafficLight::DelayedSpeedUpdate, waitTime, false);
+			else 
+				CarArray[0]->currentSpeed = CarArray[0]->speed;
 		}
 	}
 	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, FString::Printf(TEXT("Cars in array: %d"), CarArray.Num()));

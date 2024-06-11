@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Components/SceneComponent.h"
 #include "Components/PointLightComponent.h"
 #include "TrafficLigthActorComponent.generated.h"
 

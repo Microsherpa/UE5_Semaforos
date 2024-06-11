@@ -4,9 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Components/SceneComponent.h"
+#include "Components/PointLightComponent.h"
 #include "Components/SphereComponent.h"
-#include "TrafficLigthActorComponent.h"
 #include "Car.h"
 #include "TrafficActor.generated.h"
 
@@ -16,8 +15,9 @@ class UE5_SEMAFOROS_API ATrafficActor : public AActor
 	GENERATED_BODY()
 	
 public:	
-	UPROPERTY(EditAnywhere, Category = "TrafficLight")
-	UTrafficLigthActorComponent* TrafficLight;
+
+	UPROPERTY(EditAnywhere, Category = "Light")
+	UPointLightComponent* light;
 
 	UPROPERTY(EditAnywhere, Category = "Collider")
 	class USphereComponent* sphereCollider;
@@ -53,6 +53,10 @@ public:
 
 	UFUNCTION()
 	void ManageCars(ACar* Car, bool add);
+
+	UFUNCTION()
+	void SwitchColor(FLinearColor color);
+
 
 	void DelayedSpeedUpdate();
 

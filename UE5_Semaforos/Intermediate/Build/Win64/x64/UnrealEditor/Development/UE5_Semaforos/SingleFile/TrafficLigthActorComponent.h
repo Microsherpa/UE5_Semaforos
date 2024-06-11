@@ -1,1 +1,0 @@
-#include "D:/GitHub_Repositories/UE5_Semaforos/UE5_Semaforos/Source/UE5_Semaforos/TrafficLigthActorComponent.h"

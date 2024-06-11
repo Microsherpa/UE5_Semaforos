@@ -8,10 +8,8 @@ UTrafficLigthActorComponent::UTrafficLigthActorComponent()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = false;
-
+	PrimaryComponentTick.bCanEverTick = true;
 	light = CreateDefaultSubobject<UPointLightComponent>(TEXT("Light"));
-	light->SetupAttachment(GetOwner()->GetRootComponent());
 
 	light->SetLightColor(FLinearColor::Green);
 	light->SourceRadius = 350;
@@ -22,7 +20,6 @@ UTrafficLigthActorComponent::UTrafficLigthActorComponent()
 	light->SetVisibility(true);
 
 	light->AddLocalOffset(FVector(0, 0, 50));
-
 }
 
 
@@ -42,4 +39,3 @@ void UTrafficLigthActorComponent::SwitchColor(FLinearColor color)
 {
 	light->SetLightColor(color);
 }
-

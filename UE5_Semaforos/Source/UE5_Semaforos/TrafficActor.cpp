@@ -11,13 +11,21 @@ ATrafficActor::ATrafficActor()
 
 	Car = NULL;
 
-	TrafficLight = CreateDefaultSubobject<UTrafficLigthActorComponent>(TEXT("TrafficLight"));
-	RootComponent = Cast<USceneComponent>(TrafficLight);
-
 	sphereCollider = CreateDefaultSubobject<USphereComponent>(TEXT("Collider"));
 	sphereCollider->InitSphereRadius(radius);
 	sphereCollider->SetupAttachment(RootComponent);
 
+	light = CreateDefaultSubobject<UPointLightComponent>(TEXT("Light"));
+	light->SetupAttachment(sphereCollider);
+	light->SetLightColor(FLinearColor::Green);
+	light->SourceRadius = 350;
+	light->AttenuationRadius = 350;
+	light->IntensityUnits = ELightUnits::Lumens;
+	light->Intensity = 1000;
+	light->CastShadows = false;
+	light->SetVisibility(true);
+
+	light->AddLocalOffset(FVector(0, 0, 50));
 }
 
 // Called when the game starts or when spawned
@@ -32,8 +40,10 @@ void ATrafficActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (CarArray.Num() == 0) TrafficLight->SwitchColor(FLinearColor::Green);
-	else TrafficLight->SwitchColor(FLinearColor::Red);
+	if (CarArray.Num() == 0) 
+		SwitchColor(FLinearColor::Green);
+	else 
+		SwitchColor(FLinearColor::Red);
 
 }
 
@@ -75,6 +85,11 @@ void ATrafficActor::ManageCars(ACar* newCar, bool add)
 	}
 	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, FString::Printf(TEXT("Cars in array: %d"), CarArray.Num()));
 
+}
+
+void ATrafficActor::SwitchColor(FLinearColor color)
+{
+	light->SetLightColor(color);
 }
 
 void ATrafficActor::DelayedSpeedUpdate()
